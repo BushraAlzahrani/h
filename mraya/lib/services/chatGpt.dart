@@ -1,23 +1,25 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class ChatGpt{
+class ChatGpt {
+  static const String baseURL =
+      'https://experimental.willow.vectara.io/v1/chat/completions';
 
-static const String baseURL ='https://experimental.willow.vectara.io/v1/chat/completions';
-
-
- void talkToChatGpt(String role, String content) async {
+  Future<String> talkToChatGpt(String role, String content) async {
     try {
-      final response =
-          await http.post(Uri.parse('${baseURL}'), body: {
-        "role": role,
-        "content": content,
-      }, headers: {
+      final response = await http.post(Uri.parse('${baseURL}'), body: 
+      json.encode( 
+       {
+        "model": "gpt-3.5-turbo",
+        "messages": [
+          {"role": role, "content": content}
+        ]
+      })
+     , headers: {
         'customer-id': '4271855006',
-        'x-api-key':'zqt__p9VnshHXErIL8kRx4GxGCMnyRfn0wzRclJp7Q',
+        'x-api-key': 'zqt__p9VnshHXErIL8kRx4GxGCMnyRfn0wzRclJp7Q',
       });
       if (response.statusCode == 200) {
-
         // Get.snackbar(
         //   "Succes",
         //   "Added article",
@@ -25,10 +27,12 @@ static const String baseURL ='https://experimental.willow.vectara.io/v1/chat/com
         //   backgroundColor: whiteColor,
         // );
         var data = jsonDecode(response.body.toString());
+                print("data");
+
         print(data);
-        print('Added message');
+        return data;
       } else {
-        print('error');
+        return 'error';
         // var data = jsonDecode(response.body.toString());
         // print(data);
         // Get.snackbar(
@@ -39,12 +43,7 @@ static const String baseURL ='https://experimental.willow.vectara.io/v1/chat/com
         // );
       }
     } catch (e) {
-      print(e.toString());
+      return e.toString();
     }
   }
 }
-
-
-
-
-

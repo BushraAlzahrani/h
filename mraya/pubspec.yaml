@@ -40,6 +40,7 @@ dependencies:
   get: ^4.6.5
   uuid: ^3.0.7
   bubble: ^1.2.1
+  flutter_native_splash: ^2.2.19
 
 dev_dependencies:
   flutter_test:

@@ -41,16 +41,16 @@ class ChatController extends GetxController {
     messages[index] = updatedMessage;
   }
 
-  void handleSendPressed(types.PartialText message) {
+  void handleSendPressed(types.PartialText message) async {
     final textMessage = types.TextMessage(
       author: user,
       createdAt: DateTime.now().millisecondsSinceEpoch,
       id: const Uuid().v4(),
       text: message.text,
     );
-    var rep = new ChatGpt().talkToChatGpt("user", message.text);
+    var rep = await ChatGpt().talkToChatGpt("user", message.text);
     addMessage(textMessage);
-    chatGPTReply(rep);
+    chatGPTReply(rep.toString());
 
   }
 

@@ -7,18 +7,17 @@ class ChatGpt {
 
   Future<String> talkToChatGpt(String role, String content) async {
     try {
-      final response = await http.post(Uri.parse('${baseURL}'), body: 
-      json.encode( 
-       {
-        "model": "gpt-3.5-turbo",
-        "messages": [
-          {"role": role, "content": content}
-        ]
-      })
-     , headers: {
-        'customer-id': '4271855006',
-        'x-api-key': 'zqt__p9VnshHXErIL8kRx4GxGCMnyRfn0wzRclJp7Q',
-      });
+      final response = await http.post(Uri.parse('${baseURL}'),
+          body: json.encode({
+            "model": "gpt-3.5-turbo",
+            "messages": [
+              {"role": role, "content": content}
+            ]
+          }),
+          headers: {
+            'customer-id': '4271855006',
+            'x-api-key': 'zqt__p9VnshHXErIL8kRx4GxGCMnyRfn0wzRclJp7Q',
+          });
       if (response.statusCode == 200) {
         // Get.snackbar(
         //   "Succes",
@@ -26,11 +25,8 @@ class ChatGpt {
         //   snackPosition: SnackPosition.TOP,
         //   backgroundColor: whiteColor,
         // );
-        var data = jsonDecode(response.body.toString());
-                print("data");
-
-        print(data);
-        return data;
+        var data = json.decode(response.body);
+        return data['choices'][0]['message']['content'];
       } else {
         return 'error';
         // var data = jsonDecode(response.body.toString());

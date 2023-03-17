@@ -11,6 +11,8 @@ import 'package:http/http.dart' as http;
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:uuid/uuid.dart';
 
+import 'Views/Screens/shoppingList.dart';
+
 
 void main() {
   initializeDateFormatting().then((_) => runApp(const MyApp()));
@@ -21,7 +23,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const MaterialApp(
-        home: ChatPage(),
+        // home: ChatPage(),
+        home: ShoppingList(),
       );
 }
 
@@ -49,8 +52,6 @@ class _ChatPageState extends State<ChatPage> {
         inputBackgroundColor: Color.fromARGB(255, 226, 226, 226),
         inputTextColor: Colors.grey,
         primaryColor: Colors.grey,
-
-        
 
       ),
           messages: _messages,

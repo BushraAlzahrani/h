@@ -19,7 +19,7 @@ class ShoppingList extends StatelessWidget {
             GridView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(22.0),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisSpacing: 20,

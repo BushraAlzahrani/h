@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:get/get.dart';
 import '../services/ikea_proudcts.dart';
 import 'package:http/http.dart' as http;
@@ -16,9 +17,9 @@ class ShoppingListController extends GetxController {
   final dallEResult= ''.obs;
 
   onInit() {
-    getAllIkeaProudcts();
+    // getAllIkeaProudcts();
     print('in onInit!!!!!!!!');
-    sendShoppingListToDallE("3d model dining room industrial style");
+    sendShoppingListToDallE();
   }
 
   void getAllIkeaProudcts() async {
@@ -34,27 +35,34 @@ class ShoppingListController extends GetxController {
     }
   }
 
-  Future<String?> sendShoppingListToDallE(String imgDesc)async{
+   sendShoppingListToDallE()async{
 
      try {
-      final response = await http.post(Uri.parse('${baseURL}'), body: {
-      "prompt": imgDesc,
-      "n":1,
-      "size":"500x500"
-      }, headers: {
+      // final r = await http.post(Uri.https('api.openai.com', '/v1/images/generations'));
+      final response = await http.post(Uri.parse('${baseURL}'), body: 
+      // {
+      // "prompt": imgDesc,
+      // "n":1,
+      // "size":"500x500"
+      // }
+      json.encode({
+    "prompt": "3d model dining room industrial style",
+    "n":1,
+    "size":"1024x1024"
+   })
+      , headers: {
+         'Content-Type': 'application/json',
         'Authorization': 'Bearer ${open_ai_api_key}'
       });
+      // log(json.decode(response.body));
       if (response.statusCode == 200) {
-        print('dall-e Succes!!!!!!!!!!!!!!!!!!!!');
-         var data = jsonDecode(response.body.toString());
-        print('_______________________________________________${data['data']['url']}');
-
-        dallEResult.value= data['data'][0]['url'];
-
-        return data['data']['url'];
+         var data = json.decode(response.body);
+         final url = data['data'][0]['url'];
+        dallEResult.value= url;
+        log(url);
+        return url;
 
       } else {
-        print('0-0-0-0 error dall-e!!!!!!!!');
     
       }
     } catch (e) {

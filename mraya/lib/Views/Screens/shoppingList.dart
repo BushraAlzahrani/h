@@ -14,12 +14,12 @@ class ShoppingList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('in screen!!!!!!!!!!!!!!!!!! ${controller.dallEResult.value}');
+    print('in screen!!!!!!!!!!!!!!!!!! ${controller.dallEResult.value} ?????????????');
     return SafeArea(
         child: Scaffold(
       backgroundColor: Color(0xffbEAF0EF),
       body: 
-      Image.network(controller.dallEResult.value),
+      Image.network(controller.dallEResult.value, height: 200, width: 200,),
       
       // SingleChildScrollView (
       //   child: Column(

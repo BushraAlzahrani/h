@@ -1,14 +1,9 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import '../api.dart';
+
 class ChatGpt {
-  static const String vectaraBaseURL =
-      'https://experimental.willow.vectara.io/v1/chat/completions';
-
-    static const String customerId = '4271855006';
-
-   static const String vectaraApiKey = 'zqt__p9VnshHXErIL8kRx4GxGCMnyRfn0wzRclJp7Q';
-
   Future<String> talkToChatGpt(String role, String content) async {
     try {
       final response = await http.post(Uri.parse('${vectaraBaseURL}'),

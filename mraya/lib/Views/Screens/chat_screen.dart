@@ -50,7 +50,7 @@ class ChatPage extends StatelessWidget {
                 ),
               Container(height: MediaQuery.of(context).size.height*0.001 ,color: Color.fromARGB(255, 225, 225, 225),),
               Container(
-                height: MediaQuery.of(context).size.height*0.899,
+                height: MediaQuery.of(context).size.height*0.799,
                 child:Obx(() => Chat(
           theme: const DefaultChatTheme(
             inputBackgroundColor: Color.fromARGB(255, 236, 236, 236),

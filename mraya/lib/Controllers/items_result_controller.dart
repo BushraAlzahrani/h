@@ -1,23 +1,23 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:get/get.dart';
+import 'package:mraya/Controllers/chat_controllers.dart';
+import '../api.dart';
 import '../services/ikea_proudcts.dart';
 import 'package:http/http.dart' as http;
 import '../Models/proudct_model.dart';
 
 class ItemsResultController extends GetxController {
+
   var ikeaProductsList = <ProudctModel>[].obs;
   var isLoading = true.obs;
-
-
   final dallEResult = ''.obs;
-
   final descListDallE = [].obs;
   final desginDesDallE = ''.obs;
 
   onInit() {
     getAllIkeaProudcts();
-    print('in onInit!!!!!!!!');
+
     // sendShoppingListToDallE(desginDesDallE.value);
   }
 

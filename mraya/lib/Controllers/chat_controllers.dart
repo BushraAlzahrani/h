@@ -18,6 +18,8 @@ class ChatController extends GetxController {
   }
 
   final messages = <types.Message>[].obs;
+  List<String> chatGPTMaessages=[];
+  List<String> userMaessages=[];
   final user = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3ac');
   final chatGPT = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3gpt');
 

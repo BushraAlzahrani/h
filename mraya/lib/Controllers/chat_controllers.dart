@@ -12,14 +12,19 @@ import 'package:mraya/Services/chatGpt.dart';
 import 'package:uuid/uuid.dart';
 
 class ChatController extends GetxController {
+
+  final messages = <types.Message>[].obs;
+  List<String> chatGPTMaessages = [];
+  List<String> userMaessages = [];
+  final user = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3ac');
+  final chatGPT = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3gpt');
   onInit() {
     loadMessages();
     chatGPTReply("hi ..... ");
+    userMaessages.clear();
+    chatGPTMaessages.clear();
+    messages.clear();
   }
-
-  final messages = <types.Message>[].obs;
-  final user = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3ac');
-  final chatGPT = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3gpt');
 
   void loadMessages() async {
     final response = await rootBundle.loadString('assets/messages.json');
@@ -50,8 +55,15 @@ class ChatController extends GetxController {
     );
     var rep = await ChatGpt().talkToChatGpt("user", message.text);
     addMessage(textMessage);
-    chatGPTReply(rep.toString());
+    addUserMessage(message.text);
+    if (userMaessages[0] == "thanks") {
+      Future.delayed(Duration(milliseconds: 2000), () {
+        Get.toNamed("/done");
+      });
+    }
 
+
+    chatGPTReply(rep.toString());
   }
 
   void chatGPTReply(String message) {
@@ -62,45 +74,27 @@ class ChatController extends GetxController {
       text: message,
     );
     addMessage(textMessage);
+    addChatGPTMessage(message);
+    print("chatGPTMaessages");
+    print(chatGPTMaessages[0]);
   }
 
   void addMessage(types.Message message) {
     messages.insert(0, message);
   }
 
-  void handleMessageTap(BuildContext _, types.Message message) async {
-    if (message is types.FileMessage) {
-      var localPath = message.uri;
+  void addUserMessage(String message) {
+    userMaessages.insert(0, message);
+  }
 
-      if (message.uri.startsWith('http')) {
-        try {
-          final index =
-              messages.indexWhere((element) => element.id == message.id);
-          final updatedMessage =
-              (messages[index] as types.FileMessage).copyWith(
-            isLoading: true,
-          );
-          messages[index] = updatedMessage;
-
-          final client = http.Client();
-          final request = await client.get(Uri.parse(message.uri));
-          final bytes = request.bodyBytes;
-
-          if (!File(localPath).existsSync()) {
-            final file = File(localPath);
-            await file.writeAsBytes(bytes);
-          }
-        } finally {
-          final index =
-              messages.indexWhere((element) => element.id == message.id);
-          final updatedMessage =
-              (messages[index] as types.FileMessage).copyWith(
-            isLoading: null,
-          );
-
-          messages[index] = updatedMessage;
+  void addChatGPTMessage(String message) {
+    chatGPTMaessages.insert(0, message);
+    for(var i=0;i<userMaessages.length;i++){
+        if(chatGPTMaessages[i].length>2000){
+            Future.delayed(Duration(milliseconds: 2000), () {
+        Get.toNamed("/done");
+      });
         }
-      }
     }
   }
 }

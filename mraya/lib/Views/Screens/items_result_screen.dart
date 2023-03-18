@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
-
 import '../../Controllers/items_result_controller.dart';
+import '../../utils.dart';
 import '../Widgets/customButton.dart';
 import '../Widgets/proudctCard.dart';
 
@@ -14,15 +12,18 @@ class ItemsResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // print(
-    //     'in screen!!!!!!!!!!!!!!!!!! ${controller.dallEResult.value} ?????????????');
     return SafeArea(
         child: Scaffold(
-      backgroundColor: Color(0xffbEAF0EF),
-      body:
-          // Image.network(controller.dallEResult.value, height: 200, width: 200,),
-
-          SingleChildScrollView(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Text(
+          'Chat with Maraya',
+          style: TextStyle(color: Colors.black),
+        ),
+      ),
+      backgroundColor: BgColor,
+      body: SingleChildScrollView(
         child: Column(
           children: [
             GridView.builder(
@@ -36,6 +37,13 @@ class ItemsResult extends StatelessWidget {
                 ),
                 itemCount: controller.ikeaProductsList.length,
                 itemBuilder: (BuildContext context, int index) {
+                  print('in itemBuilder!!!!!!!!!!!!');
+                  controller.descListDallE.add(
+                      '${controller.ikeaProductsList[index].item} ${controller.ikeaProductsList[index].productDetails} in color ${controller.ikeaProductsList[index].color}');
+                 controller.desginDesDallE.value = controller.descListDallE.join(' and ');  
+                  print(controller.descListDallE);
+                  print('the string value ${controller.desginDesDallE.value}');
+
                   return ProudctCard(
                     imageUrl: controller.ikeaProductsList[index].imageUrl,
                     item: controller.ikeaProductsList[index].item,
@@ -47,17 +55,22 @@ class ItemsResult extends StatelessWidget {
             ),
             CustomButton(
               text: 'Continue',
-              isButtonDisabled: false,
+              textColor: Colors.white,
+              color: mainColor,
               onPressed: () {
                 // the dall-e function
+                controller.sendShoppingListToDallE(controller.desginDesDallE.value);
+                Get.toNamed('/designResult');
               },
+            ),
+            SizedBox(
+              height: 20,
             ),
             CustomButton(
               text: 'show me another suggestion ',
-              isButtonDisabled: true,
-              onPressed: () {
-                
-              },
+              textColor: mainColor,
+              color: BgColor,
+              onPressed: () {},
             ),
           ],
         ),

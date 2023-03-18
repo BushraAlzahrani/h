@@ -19,7 +19,7 @@ class ItemsResultController extends GetxController {
   onInit() {
     getAllIkeaProudcts();
     print('in onInit!!!!!!!!');
-    // sendShoppingListToDallE();
+    sendShoppingListToDallE();
   }
 
   void getAllIkeaProudcts() async {
@@ -48,7 +48,7 @@ class ItemsResultController extends GetxController {
               json.encode({
             "prompt": "3d model dining room industrial style",
             "n": 1,
-            "size": "1024x1024"
+            "size": "400x400"
           }),
           headers: {
             'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ class ItemsResultController extends GetxController {
         var data = json.decode(response.body);
         final url = data['data'][0]['url'];
         dallEResult.value = url;
-        log(url);
+        print(url);
         return url;
       } else {}
     } catch (e) {

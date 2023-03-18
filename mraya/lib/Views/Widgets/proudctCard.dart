@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mraya/utils.dart';
 
 class ProudctCard extends StatelessWidget {
   String imageUrl;
@@ -63,7 +64,7 @@ class ProudctCard extends StatelessWidget {
               ),
               MaterialButton(
                 onPressed: () {},
-                color: Color(0xffbBB2649),
+                color: mainColor,
                 textColor: Colors.white,
                 child: Icon(
                   Icons.add,

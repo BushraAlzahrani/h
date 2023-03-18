@@ -27,16 +27,22 @@ class DesignResult extends StatelessWidget {
               padding: const EdgeInsets.all(22.0),
               child: Column(
                 children: [
+               
+                 Obx(() =>  controller.dallEResult.isEmpty
+                      ? Container(
+                    height: 50,
+                    width: 50,
+                    child: CircularProgressIndicator(
+                      valueColor: new AlwaysStoppedAnimation<Color>(mainColor),
+                    ),
+                  )
+                      : Image.network(
+                          controller.dallEResult.value,
+                          height: 400,
+                          width: 400,
+                        ),
+                 ),
 
-                  controller.dallEResult.value == '' ? Container(
-                     height: 400,
-                    width: 400,
-                  ) :
-                  Image.network(
-                    controller.dallEResult.value,
-                    height: 400,
-                    width: 400,
-                  ),
                   SizedBox(
                     height: 100,
                   ),
@@ -44,9 +50,7 @@ class DesignResult extends StatelessWidget {
                     text: 'Continue',
                     textColor: Colors.white,
                     color: mainColor,
-                    onPressed: () {
-                      // the dall-e function
-                    },
+                    onPressed: () {},
                   ),
                   SizedBox(
                     height: 20,
@@ -55,7 +59,10 @@ class DesignResult extends StatelessWidget {
                     text: 'show me another suggestion ',
                     textColor: mainColor,
                     color: BgColor,
-                    onPressed: () {},
+                    onPressed: () {
+                      controller.sendShoppingListToDallE(
+                          controller.desginDesDallE.value);
+                    },
                   ),
                 ],
               ),

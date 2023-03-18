@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import '../../Controllers/items_result_controller.dart';
 import '../../utils.dart';
 import '../Widgets/customButton.dart';
-import '../Widgets/proudctCard.dart';
+import '../Widgets/shopping_list_card.dart';
 
-class ItemsResult extends StatelessWidget {
-  ItemsResult({super.key});
+class ShoppingList extends StatelessWidget {
+  ShoppingList({super.key});
 
   final controller = Get.find<ItemsResultController>();
 
@@ -27,34 +27,35 @@ class ItemsResult extends StatelessWidget {
         child: Column(
           children: [
             FutureBuilder(
-                future: controller.getAllIkeaProudcts(),
+              future: controller.getAllIkeaProudcts(),
               builder: (context, snapshot) {
-                return GridView.builder(
+                return ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     padding: EdgeInsets.all(22.0),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 20,
-                      crossAxisSpacing: 20,
-                    ),
+                   
                     itemCount: controller.ikeaProductsList.length,
                     itemBuilder: (BuildContext context, int index) {
-                      print('in itemBuilder!!!!!!!!!!!!');
-                      controller.descListDallE.add(
-                          '${controller.ikeaProductsList[index].item} ${controller.ikeaProductsList[index].productDetails} in color ${controller.ikeaProductsList[index].color}');
-                     controller.desginDesDallE.value = controller.descListDallE.join(' and ');  
-                      print(controller.descListDallE);
-                      print('the string value ${controller.desginDesDallE.value}');
-            
-                      return ProudctCard(
-                        imageUrl: controller.ikeaProductsList[index].imageUrl,
-                        item: controller.ikeaProductsList[index].item,
-                        price: controller.ikeaProductsList[index].price,
+
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 15.0),
+                        child: ShoppingListCard(
+                          imageUrl: controller.ikeaProductsList[index].imageUrl,
+                          item: controller.ikeaProductsList[index].item,
+                          price: controller.ikeaProductsList[index].price,
+                        ),
                       );
                     });
               }
             ),
+            Divider(color: mainColor, thickness: 1,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+              children: [
+              Text('Total'),
+               Text('price'),
+            ],),
             SizedBox(
               height: 100,
             ),
@@ -63,9 +64,6 @@ class ItemsResult extends StatelessWidget {
               textColor: Colors.white,
               color: mainColor,
               onPressed: () {
-                // the dall-e function
-                controller.sendShoppingListToDallE(controller.desginDesDallE.value);
-                Get.toNamed('/designResult');
               },
             ),
             SizedBox(

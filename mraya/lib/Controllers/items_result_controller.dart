@@ -9,10 +9,6 @@ class ItemsResultController extends GetxController {
   var ikeaProductsList = <ProudctModel>[].obs;
   var isLoading = true.obs;
 
-  String open_ai_api_key =
-      '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';
-
-  String baseURL = 'https://api.openai.com/v1/images/generations';
 
   final dallEResult = ''.obs;
 
@@ -25,12 +21,13 @@ class ItemsResultController extends GetxController {
     // sendShoppingListToDallE(desginDesDallE.value);
   }
 
-  void getAllIkeaProudcts() async {
+  Future<void> getAllIkeaProudcts() async {
     var products = await IkeaProudctsService.getIkeaProudcts();
     print('in getAllIkeaProudcts!!!!!!!!');
     try {
       isLoading(true);
       if (products.isNotEmpty) {
+        ikeaProductsList.clear();
         ikeaProductsList.addAll(products);
       }
     } finally {
@@ -42,7 +39,7 @@ class ItemsResultController extends GetxController {
     print('enter Dall-E fnction');
     print(imgDesc);
     try {
-      final response = await http.post(Uri.parse('${baseURL}'),
+      final response = await http.post(Uri.parse('${dallEBaseURL}'),
           body:
               json.encode({
             "prompt": "3d model dining room with $imgDesc",

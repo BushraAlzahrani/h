@@ -2,12 +2,16 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ChatGpt {
-  static const String baseURL =
+  static const String vectaraBaseURL =
       'https://experimental.willow.vectara.io/v1/chat/completions';
+
+    static const String customerId = '4271855006';
+
+   static const String vectaraApiKey = 'zqt__p9VnshHXErIL8kRx4GxGCMnyRfn0wzRclJp7Q';
 
   Future<String> talkToChatGpt(String role, String content) async {
     try {
-      final response = await http.post(Uri.parse('${baseURL}'),
+      final response = await http.post(Uri.parse('${vectaraBaseURL}'),
           body: json.encode({
             "model": "gpt-3.5-turbo",
             "messages": [
@@ -15,8 +19,8 @@ class ChatGpt {
             ]
           }),
           headers: {
-            'customer-id': '4271855006',
-            'x-api-key': 'zqt__p9VnshHXErIL8kRx4GxGCMnyRfn0wzRclJp7Q',
+            'customer-id': customerId,
+            'x-api-key': vectaraApiKey,
           });
       if (response.statusCode == 200) {
         // Get.snackbar(

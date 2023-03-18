@@ -1,13 +1,13 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:mraya/Controllers/items_result_controller.dart';
 import 'package:mraya/routes.dart';
 import 'Views/Screens/chat_screen.dart';
 import 'Views/Screens/items_result_screen.dart';
 
-
 void main() {
+  
   initializeDateFormatting().then((_) => runApp(const MyApp()));
 }
 
@@ -16,12 +16,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GetMaterialApp(
-    debugShowCheckedModeBanner: false,
-    // initialRoute: "/",
-    initialRoute: "/itemsResult",
-    // initialRoute: "/designResult",
-    getPages: AppRoutes.pages,
-    // home: ShoppingList(),
-       );
+        debugShowCheckedModeBanner: false,
+        // initialRoute: "/",
+        // initialRoute: "/itemsResult",
+        // initialRoute: "/designResult",
+         initialRoute: "/shoppingList",
+        getPages: AppRoutes.pages,
+        // home: ShoppingList(),
+      );
 }
-

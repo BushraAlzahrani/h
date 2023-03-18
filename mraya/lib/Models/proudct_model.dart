@@ -19,7 +19,7 @@ class ProudctModel {
         item: json["item"],
         productDetails: json["productDetails"],
         color: json["color"],
-        price: json["price"].toDouble(),
+        price: json["price"],
         imageUrl: json["imageUrl"],
         id: json["id"],
       );

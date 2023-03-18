@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
 class ProudctCard extends StatelessWidget {
-  const ProudctCard({super.key});
+  String imageUrl;
+  String item;
+  String price;
+  ProudctCard({
+    super.key,
+    required this.imageUrl,
+    required this.item,
+    required this.price,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,15 +24,21 @@ class ProudctCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Center(
-            child: Image.network(
-              'https://www.ikea.com/sa/en/images/products/moerbylanga-table-oak-veneer-brown-stained__0737110_pe740888_s5.jpg?f=xl',
+            child:
+                // Image.network(
+                //   'https://www.ikea.com/sa/en/images/products/moerbylanga-table-oak-veneer-brown-stained__0737110_pe740888_s5.jpg?f=xl',
+                //   height: 100,
+                // ),
+
+                Image.network(
+              imageUrl,
               height: 100,
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 10.0),
             child: Text(
-              'title',
+              item,
               textAlign: TextAlign.start,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
@@ -32,15 +46,14 @@ class ProudctCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10.0),
             child: Text(
-              '100 SAR',
+              '$price SAR',
               style: TextStyle(
-              color: Color(0xffb10CF82), fontWeight: FontWeight.bold),
+                  color: Color(0xffb10CF82), fontWeight: FontWeight.bold),
             ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-
               Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Text(

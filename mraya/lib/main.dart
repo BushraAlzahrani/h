@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:mraya/routes.dart';
 import 'Views/Screens/chat_screen.dart';
-import 'Views/Screens/shoppingList.dart';
+import 'Views/Screens/items_result_screen.dart';
 
 
 void main() {

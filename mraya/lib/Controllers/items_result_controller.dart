@@ -5,7 +5,7 @@ import '../services/ikea_proudcts.dart';
 import 'package:http/http.dart' as http;
 import '../Models/proudct_model.dart';
 
-class ShoppingListController extends GetxController {
+class ItemsResultController extends GetxController {
   var ikeaProductsList = <ProudctModel>[].obs;
   var isLoading = true.obs;
 
@@ -14,12 +14,12 @@ class ShoppingListController extends GetxController {
 
   String baseURL = 'https://api.openai.com/v1/images/generations';
 
-  final dallEResult= ''.obs;
+  final dallEResult = ''.obs;
 
   onInit() {
-    // getAllIkeaProudcts();
+    getAllIkeaProudcts();
     print('in onInit!!!!!!!!');
-    sendShoppingListToDallE();
+    // sendShoppingListToDallE();
   }
 
   void getAllIkeaProudcts() async {
@@ -35,45 +35,36 @@ class ShoppingListController extends GetxController {
     }
   }
 
-   sendShoppingListToDallE()async{
-
-     try {
+  sendShoppingListToDallE() async {
+    try {
       // final r = await http.post(Uri.https('api.openai.com', '/v1/images/generations'));
-      final response = await http.post(Uri.parse('${baseURL}'), body: 
-      // {
-      // "prompt": imgDesc,
-      // "n":1,
-      // "size":"500x500"
-      // }
-      json.encode({
-    "prompt": "3d model dining room industrial style",
-    "n":1,
-    "size":"1024x1024"
-   })
-      , headers: {
-         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${open_ai_api_key}'
-      });
+      final response = await http.post(Uri.parse('${baseURL}'),
+          body:
+              // {
+              // "prompt": imgDesc,
+              // "n":1,
+              // "size":"500x500"
+              // }
+              json.encode({
+            "prompt": "3d model dining room industrial style",
+            "n": 1,
+            "size": "1024x1024"
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ${open_ai_api_key}'
+          });
       // log(json.decode(response.body));
       if (response.statusCode == 200) {
-         var data = json.decode(response.body);
-         final url = data['data'][0]['url'];
-        dallEResult.value= url;
+        var data = json.decode(response.body);
+        final url = data['data'][0]['url'];
+        dallEResult.value = url;
         log(url);
         return url;
-
-      } else {
-    
-      }
+      } else {}
     } catch (e) {
-       print('0-0-0-0 catch error dall-e!!!!!!!!');
+      print('0-0-0-0 catch error dall-e!!!!!!!!');
       print(e.toString());
     }
-  
   }
-
-  }
-
-
-   
-
+}

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
   String text;
-   bool isButtonDisabled;
-  CustomButton({super.key, required this.text, required this.isButtonDisabled});
+   bool isButtonDisabled; // change to color not required there will be deafult
+   Function() onPressed;
+  CustomButton({super.key, required this.text, required this.isButtonDisabled, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class CustomButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(20.0),
             ),
           ),
-          onPressed: () {},
+          onPressed: onPressed,
           child: Text(text)),
     );
   }

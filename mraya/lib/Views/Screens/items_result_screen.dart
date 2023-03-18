@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
-
 import '../../Controllers/items_result_controller.dart';
 import '../../utils.dart';
 import '../Widgets/customButton.dart';
@@ -40,6 +37,13 @@ class ItemsResult extends StatelessWidget {
                 ),
                 itemCount: controller.ikeaProductsList.length,
                 itemBuilder: (BuildContext context, int index) {
+                  print('in itemBuilder!!!!!!!!!!!!');
+                  controller.descListDallE.add(
+                      '${controller.ikeaProductsList[index].item} ${controller.ikeaProductsList[index].productDetails} in color ${controller.ikeaProductsList[index].color}');
+                 controller.desginDesDallE.value = controller.descListDallE.join(' and ');  
+                  print(controller.descListDallE);
+                  print('the string value ${controller.desginDesDallE.value}');
+
                   return ProudctCard(
                     imageUrl: controller.ikeaProductsList[index].imageUrl,
                     item: controller.ikeaProductsList[index].item,
@@ -55,6 +59,8 @@ class ItemsResult extends StatelessWidget {
               color: mainColor,
               onPressed: () {
                 // the dall-e function
+                controller.sendShoppingListToDallE(controller.desginDesDallE.value);
+                Get.toNamed('/designResult');
               },
             ),
             SizedBox(

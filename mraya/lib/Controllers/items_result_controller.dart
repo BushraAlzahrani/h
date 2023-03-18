@@ -16,10 +16,13 @@ class ItemsResultController extends GetxController {
 
   final dallEResult = ''.obs;
 
+  final descListDallE = [].obs;
+  final desginDesDallE = ''.obs;
+
   onInit() {
     getAllIkeaProudcts();
     print('in onInit!!!!!!!!');
-    sendShoppingListToDallE();
+    // sendShoppingListToDallE(desginDesDallE.value);
   }
 
   void getAllIkeaProudcts() async {
@@ -35,26 +38,21 @@ class ItemsResultController extends GetxController {
     }
   }
 
-  sendShoppingListToDallE() async {
+  sendShoppingListToDallE(String imgDesc) async {
+    print('enter Dall-E fnction');
+    print(imgDesc);
     try {
-      // final r = await http.post(Uri.https('api.openai.com', '/v1/images/generations'));
       final response = await http.post(Uri.parse('${baseURL}'),
           body:
-              // {
-              // "prompt": imgDesc,
-              // "n":1,
-              // "size":"500x500"
-              // }
               json.encode({
-            "prompt": "3d model dining room industrial style",
+            "prompt": "3d model dining room with $imgDesc",
             "n": 1,
-            "size": "400x400"
+            "size": "512x512"
           }),
           headers: {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ${open_ai_api_key}'
           });
-      // log(json.decode(response.body));
       if (response.statusCode == 200) {
         var data = json.decode(response.body);
         final url = data['data'][0]['url'];

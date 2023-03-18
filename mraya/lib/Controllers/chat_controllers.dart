@@ -12,12 +12,12 @@ import 'package:mraya/Services/chatGpt.dart';
 import 'package:uuid/uuid.dart';
 
 class ChatController extends GetxController {
-
   final messages = <types.Message>[].obs;
   List<String> chatGPTMaessages = [];
   List<String> userMaessages = [];
   final user = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3ac');
   final chatGPT = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3gpt');
+  final myList = "".obs;
   onInit() {
     loadMessages();
     chatGPTReply("hi ..... ");
@@ -56,12 +56,11 @@ class ChatController extends GetxController {
     var rep = await ChatGpt().talkToChatGpt("user", message.text);
     addMessage(textMessage);
     addUserMessage(message.text);
-    if (userMaessages[0] == "thanks") {
+    if (userMaessages[0] == "thanks" || userMaessages[0] == 'Thanks') {
       Future.delayed(Duration(milliseconds: 2000), () {
         Get.toNamed("/done");
       });
     }
-
 
     chatGPTReply(rep.toString());
   }
@@ -75,8 +74,15 @@ class ChatController extends GetxController {
     );
     addMessage(textMessage);
     addChatGPTMessage(message);
-    print("chatGPTMaessages");
-    print(chatGPTMaessages[0]);
+    if (message.length >= 200) {
+      myList.value = message;
+      Get.toNamed("/itemsResult");
+    }
+    if (message.length >= 1000) {
+      myList.value = message;
+      print("kkk");
+      Get.toNamed("/itemsResult");
+    }
   }
 
   void addMessage(types.Message message) {
@@ -89,12 +95,5 @@ class ChatController extends GetxController {
 
   void addChatGPTMessage(String message) {
     chatGPTMaessages.insert(0, message);
-    for(var i=0;i<userMaessages.length;i++){
-        if(chatGPTMaessages[i].length>2000){
-            Future.delayed(Duration(milliseconds: 2000), () {
-        Get.toNamed("/done");
-      });
-        }
-    }
   }
 }

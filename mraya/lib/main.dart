@@ -19,9 +19,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => GetMaterialApp(
         debugShowCheckedModeBanner: false,
         // initialRoute: "/",
-        // initialRoute: "/itemsResult",
+        initialRoute: "/shoppingList",
         // initialRoute: "/designResult",
-         initialRoute: "/shoppingList",
+        //  initialRoute: "/splash",
         getPages: AppRoutes.pages,
         // home: ShoppingList(),
       );

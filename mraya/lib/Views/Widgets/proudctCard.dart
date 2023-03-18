@@ -58,7 +58,7 @@ class ProudctCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Text(
-                  'From Ikea',
+                  'From IKEA',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),

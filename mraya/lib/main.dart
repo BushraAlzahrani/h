@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:mraya/routes.dart';
- 
 import 'Views/Screens/chat_screen.dart';
+import 'Views/Screens/items_result_screen.dart';
 
 
 void main() {
@@ -18,7 +18,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => GetMaterialApp(
     debugShowCheckedModeBanner: false,
     initialRoute: "/",
+    // initialRoute: "/itemsResult",
     getPages: AppRoutes.pages,
+    // home: ShoppingList(),
        );
 }
 

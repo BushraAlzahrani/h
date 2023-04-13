@@ -18,65 +18,65 @@ class ShoppingListCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Colors.white,
-      ),
-      width: 200,
-      height: 150,
+      ),      
+      width: MediaQuery.of(context).size.width * 51.2,
+      height: MediaQuery.of(context).size.height * 0.17,
       child: Align(
         alignment: Alignment.topLeft,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              width: 15,
+             SizedBox(
+            width: MediaQuery.of(context).size.width * 0.040,
             ),
             Center(
               child: Image.network(
                 imageUrl,
-                height: 100,
+                  height: MediaQuery.of(context).size.height * 0.10,
               ),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 30.0, left: 10.0),
+                  padding:       
+                  EdgeInsets.only(top: MediaQuery.of(context).size.height/30, left: MediaQuery.of(context).size.width/35),
                   child: Text(
                     item,
                     textAlign: TextAlign.start,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: EdgeInsets.only(top: MediaQuery.of(context).size.height/90, left: MediaQuery.of(context).size.width/35),
                   child: Text(
                     '$price SAR',
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Color(0xffb10CF82), fontWeight: FontWeight.bold),
                   ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
+                     Padding(
+                  padding: EdgeInsets.only(left: MediaQuery.of(context).size.width/35, top:  MediaQuery.of(context).size.height/95 ),                      child: const Text(
                         'From IKEA',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
-                    SizedBox(
-                      width: 50,
+                     SizedBox(
+                       width: MediaQuery.of(context).size.width * 0.10,
                     ),
                     IconButton(
                         onPressed: () {},
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.add_circle,
                           color: mainColor,
                         )),
-                    Text('1'),
+                    const Text('1'),
                     IconButton(
                         onPressed: () {},
-                        icon: Icon(Icons.remove_circle, color: mainColor)),
+                        icon: const Icon(Icons.remove_circle, color: mainColor)),
                   ],
                 )
               ],

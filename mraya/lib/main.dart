@@ -13,10 +13,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        // initialRoute: "/",
-        // initialRoute: "/shoppingList",
+        // initialRoute: "/itemsResult",
+        initialRoute: "/shoppingList",
         // initialRoute: "/designResult",
-        initialRoute: "/splash",
+        // initialRoute: "/splash",
         getPages: AppRoutes.pages,
         // home: ShoppingList(),
       );

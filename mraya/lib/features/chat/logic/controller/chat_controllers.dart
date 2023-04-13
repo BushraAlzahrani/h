@@ -18,7 +18,6 @@ class ChatController extends GetxController {
   final user = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3ac');
   final chatGPT = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3gpt');
   final myList = "".obs;
-
   onInit() {
     loadMessages();
     chatGPTReply("hi ..... ");
@@ -76,15 +75,6 @@ class ChatController extends GetxController {
     );
     addMessage(textMessage);
     addChatGPTMessage(message);
-    // if (message.length >= 200) {
-    //   myList.value = message;
-    //   Get.toNamed("/itemsResult");
-    // }
-    // if (message.length >= 1000) {
-    //   myList.value = message;
-    //   print("aaaa");
-    //   Get.toNamed("/itemsResult");
-    // }
   }
 
   void addMessage(types.Message message) {

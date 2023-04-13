@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
-import 'package:mraya/Views/Screens/done.dart';
-import 'Views/Screens/chat_screen.dart';
-import 'Views/Screens/splash.dart';
-import 'Views/Screens/design_result_screen.dart';
-import 'Views/Screens/items_result_screen.dart';
-import 'Views/Screens/shopping_list_screen.dart';
+import 'package:mraya/initial/views/screens/done.dart';
+import '../../features/chat/views/screens/chat_screen.dart';
+import '../../initial/views/screens/splash.dart';
+import '../../features/shopping_list/views/screens/design_result_screen.dart';
+import '../../features/shopping_list/views/screens/items_result_screen.dart';
+import '../../features/shopping_list/views/screens/shopping_list_screen.dart';
 
-import 'binding.dart';
+import '../binding/binding.dart';
 
 class AppRoutes {
   static final pages = [

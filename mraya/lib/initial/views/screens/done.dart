@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
-import '../../utils.dart';
-import '../Widgets/customButton.dart';
+import '../../../core/theme/app_colors.dart';
+import '../../../features/shopping_list/views/widgets/customButton.dart';
 
 class Done extends StatelessWidget {
   const Done({super.key});

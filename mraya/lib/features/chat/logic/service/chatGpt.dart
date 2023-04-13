@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import '../api.dart';
+import '../../../../core/constants/api.dart';
 
 class ChatGpt {
+
   Future<String> talkToChatGpt(String role, String content) async {
     try {
       final response = await http.post(Uri.parse('${vectaraBaseURL}'),
@@ -18,12 +19,6 @@ class ChatGpt {
             'x-api-key': vectaraApiKey,
           });
       if (response.statusCode == 200) {
-        // Get.snackbar(
-        //   "Succes",
-        //   "Added article",
-        //   snackPosition: SnackPosition.TOP,
-        //   backgroundColor: whiteColor,
-        // );
         var data = json.decode(response.body);
         return data['choices'][0]['message']['content'];
       } else {

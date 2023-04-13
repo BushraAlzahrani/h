@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
-
-import 'Controllers/chat_controllers.dart';
-import 'Controllers/items_result_controller.dart';
+import '../../features/chat/logic/controller/chat_controllers.dart';
+import '../../features/shopping_list/logic/controller/items_result_controller.dart';
 
 class Binding extends Bindings {
   @override

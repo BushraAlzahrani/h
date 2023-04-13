@@ -1,11 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:get/get.dart';
-import 'package:mraya/Controllers/chat_controllers.dart';
-import '../api.dart';
-import '../services/ikea_proudcts.dart';
+import '../../../../core/constants/api.dart';
+import '../service/ikea_proudcts.dart';
 import 'package:http/http.dart' as http;
-import '../Models/proudct_model.dart';
+import '../../model/proudct_model.dart';
 
 class ItemsResultController extends GetxController {
 

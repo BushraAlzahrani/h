@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
@@ -8,8 +7,9 @@ import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:mraya/Services/chatGpt.dart';
 import 'package:uuid/uuid.dart';
+
+import '../service/chatGpt.dart';
 
 class ChatController extends GetxController {
   final messages = <types.Message>[].obs;
@@ -18,6 +18,7 @@ class ChatController extends GetxController {
   final user = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3ac');
   final chatGPT = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3gpt');
   final myList = "".obs;
+
   onInit() {
     loadMessages();
     chatGPTReply("hi ..... ");
@@ -53,12 +54,13 @@ class ChatController extends GetxController {
       id: const Uuid().v4(),
       text: message.text,
     );
+
     var rep = await ChatGpt().talkToChatGpt("user", message.text);
     addMessage(textMessage);
     addUserMessage(message.text);
     if (userMaessages[0] == "thanks" || userMaessages[0] == 'Thanks') {
       Future.delayed(Duration(milliseconds: 2000), () {
-        Get.toNamed("/done");
+        Get.toNamed("/itemsResult");
       });
     }
 
@@ -74,15 +76,15 @@ class ChatController extends GetxController {
     );
     addMessage(textMessage);
     addChatGPTMessage(message);
-    if (message.length >= 200) {
-      myList.value = message;
-      Get.toNamed("/itemsResult");
-    }
-    if (message.length >= 1000) {
-      myList.value = message;
-      print("kkk");
-      Get.toNamed("/itemsResult");
-    }
+    // if (message.length >= 200) {
+    //   myList.value = message;
+    //   Get.toNamed("/itemsResult");
+    // }
+    // if (message.length >= 1000) {
+    //   myList.value = message;
+    //   print("aaaa");
+    //   Get.toNamed("/itemsResult");
+    // }
   }
 
   void addMessage(types.Message message) {

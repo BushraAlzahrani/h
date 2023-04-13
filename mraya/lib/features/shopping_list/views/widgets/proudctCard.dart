@@ -19,8 +19,10 @@ class ProudctCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         color: Colors.white,
       ),
-      width: 200,
-      height: 183,
+
+      // height: 183,
+      width: MediaQuery.of(context).size.width * 55.2,
+      // height: MediaQuery.of(context).size.height * 0.10,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -33,11 +35,12 @@ class ProudctCard extends StatelessWidget {
 
                 Image.network(
               imageUrl,
-              height: 100,
+              height: MediaQuery.of(context).size.height * 0.10,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 10.0),
+            padding:
+                EdgeInsets.only(left: MediaQuery.of(context).size.width /  46),
             child: Text(
               item,
               textAlign: TextAlign.start,
@@ -45,10 +48,11 @@ class ProudctCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 10.0),
+            padding:
+                EdgeInsets.only(left: MediaQuery.of(context).size.width /  46),
             child: Text(
               '$price SAR',
-              style: TextStyle(
+              style: const TextStyle(
                   color: Color(0xffb10CF82), fontWeight: FontWeight.bold),
             ),
           ),
@@ -56,19 +60,22 @@ class ProudctCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 10.0),
-                child: Text(
+                padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.width / 46),
+                child: const Text(
                   'From IKEA',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
               MaterialButton(
+                // height: MediaQuery.of(context).size.height / 35,
                 onPressed: () {},
                 color: mainColor,
                 textColor: Colors.white,
                 child: Icon(
                   Icons.add,
                   size: 20,
+                  
                 ),
                 // padding: EdgeInsets.all(4),
                 shape: CircleBorder(),

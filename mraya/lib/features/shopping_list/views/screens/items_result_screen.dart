@@ -58,14 +58,16 @@ class ItemsResult extends StatelessWidget {
                       future: controller.getAllIkeaProudcts(),
                       builder: (context, snapshot) {
                         return GridView.builder(
-                            physics: NeverScrollableScrollPhysics(),
+                            physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
-                            padding: EdgeInsets.all(22.0),
+                            padding:  EdgeInsets.all( MediaQuery.of(context).size.width / 35),
+
+                            //  const EdgeInsets.all(22.0),
                             gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                 SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
-                              mainAxisSpacing: 20,
-                              crossAxisSpacing: 20,
+                              mainAxisSpacing: MediaQuery.of(context).size.width / 25,
+                              crossAxisSpacing: MediaQuery.of(context).size.width / 25,
                             ),
                             itemCount: controller.ikeaProductsList.length,
                             itemBuilder: (BuildContext context, int index) {
@@ -82,8 +84,8 @@ class ItemsResult extends StatelessWidget {
                               );
                             });
                       }),
-                  SizedBox(
-                    height: 100,
+                   SizedBox(
+                   height: MediaQuery.of(context).size.height * 0.10,
                   ),
                   CustomButton(
                     text: 'Continue',
@@ -96,14 +98,18 @@ class ItemsResult extends StatelessWidget {
                       Get.toNamed('/designResult');
                     },
                   ),
-                  SizedBox(
-                    height: 20,
+                 SizedBox(
+                   height: MediaQuery.of(context).size.height * 0.03,
                   ),
                   CustomButton(
                     text: 'show me another suggestion',
                     textColor: mainColor,
                     color: BgColor,
                     onPressed: () {},
+                  ),
+                       SizedBox(
+                   height: MediaQuery.of(context).size.height * 0.05,
+
                   ),
                 ],
               ),

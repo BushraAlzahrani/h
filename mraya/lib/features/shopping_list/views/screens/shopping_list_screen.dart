@@ -50,7 +50,7 @@ class ShoppingList extends StatelessWidget {
                     ),
                   ),
                 ),
-          Container(
+          SizedBox(
                  height: MediaQuery.of(context).size.height * 0.800,
             child: SingleChildScrollView(
               child: Column(
@@ -59,9 +59,9 @@ class ShoppingList extends StatelessWidget {
                     future: controller.getAllIkeaProudcts(),
                     builder: (context, snapshot) {
                       return ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                          padding: EdgeInsets.all(22.0),
+                          padding: const EdgeInsets.all(22.0),
                          
                           itemCount: controller.ikeaProductsList.length,
                           itemBuilder: (BuildContext context, int index) {
@@ -77,23 +77,23 @@ class ShoppingList extends StatelessWidget {
                           });
                     }
                   ),
-                  Divider(color: mainColor, thickness: 1,),
+                 const Divider(color: mainColor, thickness: 1,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
           
-                    children: [
+                    children: const [
                       
                     Padding(
-                      padding: const EdgeInsets.only(left:8.0),
+                      padding:  EdgeInsets.only(left:8.0),
                       child: Text('Total', style: TextStyle(fontWeight: FontWeight.bold),),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right:8.0),
+                      padding:  EdgeInsets.only(right:8.0),
                       child: Text('2,612 SR', style: TextStyle(fontWeight: FontWeight.bold),),
                     ),
                   ],),
                   SizedBox(
-                    height: 100,
+                   height: MediaQuery.of(context).size.height * 0.06,
                   ),
                   CustomButton(
                     text: 'Continue',
@@ -104,7 +104,8 @@ class ShoppingList extends StatelessWidget {
                     },
                   ),
                   SizedBox(
-                    height: 20,
+                   height: MediaQuery.of(context).size.height * 0.03,
+
                   ),
                   CustomButton(
                     text: 'show me another suggestion',
@@ -112,7 +113,12 @@ class ShoppingList extends StatelessWidget {
                     color: BgColor,
                     onPressed: () {},
                   ),
+                    SizedBox(
+                   height: MediaQuery.of(context).size.height * 0.05,
+
+                  ),
                 ],
+                
               ),
             ),
           ),

@@ -1,5 +1,5 @@
 import 'dart:convert';
-import '../Models/proudct_model.dart';
+import '../../model/proudct_model.dart';
 import 'package:http/http.dart' as http;
 
 class IkeaProudctsService {

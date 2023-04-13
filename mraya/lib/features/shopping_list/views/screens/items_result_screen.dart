@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mraya/Controllers/chat_controllers.dart';
-import '../../Controllers/items_result_controller.dart';
-import '../../utils.dart';
-import '../Widgets/customButton.dart';
-import '../Widgets/proudctCard.dart';
+import '../../logic/controller/items_result_controller.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../widgets/customButton.dart';
+import '../widgets/proudctCard.dart';
 
 class ItemsResult extends StatelessWidget {
   ItemsResult({super.key});

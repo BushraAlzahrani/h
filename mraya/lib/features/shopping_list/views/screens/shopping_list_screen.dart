@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../Controllers/items_result_controller.dart';
-import '../../utils.dart';
-import '../Widgets/customButton.dart';
-import '../Widgets/shopping_list_card.dart';
+import '../../logic/controller/items_result_controller.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../widgets/customButton.dart';
+import '../widgets/shopping_list_card.dart';
 
 class ShoppingList extends StatelessWidget {
   ShoppingList({super.key});
@@ -89,7 +89,7 @@ class ShoppingList extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right:8.0),
-                      child: Text('Price', style: TextStyle(fontWeight: FontWeight.bold),),
+                      child: Text('2,612 SR', style: TextStyle(fontWeight: FontWeight.bold),),
                     ),
                   ],),
                   SizedBox(
@@ -100,6 +100,7 @@ class ShoppingList extends StatelessWidget {
                     textColor: Colors.white,
                     color: mainColor,
                     onPressed: () {
+                            Get.toNamed("/done");
                     },
                   ),
                   SizedBox(

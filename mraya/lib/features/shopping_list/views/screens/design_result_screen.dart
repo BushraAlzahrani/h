@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
-
-import '../../Controllers/items_result_controller.dart';
-import '../../utils.dart';
-import '../Widgets/customButton.dart';
+import '../../logic/controller/items_result_controller.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../widgets/customButton.dart';
 
 class DesignResult extends StatelessWidget {
   DesignResult({super.key});
@@ -76,7 +75,9 @@ class DesignResult extends StatelessWidget {
                         text: 'Continue',
                         textColor: Colors.white,
                         color: mainColor,
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.toNamed("/shoppingList");
+                        },
                       ),
                       SizedBox(
                         height: 20,

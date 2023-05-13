@@ -15,7 +15,7 @@ class ChatGpt {
             ]
           }),
           headers: {
-              'Content-Type': 'application/json',
+            'Content-Type': 'application/json',
             'Authorization': 'Bearer $chatGptApiKey',
            
           });
@@ -23,7 +23,7 @@ class ChatGpt {
         var data = json.decode(response.body);
         return data['choices'][0]['message']['content'];
       } else {
-        return  response.statusCode.toString();
+        return  "error";
         // var data = jsonDecode(response.body.toString());
         // print(data);
         // Get.snackbar(

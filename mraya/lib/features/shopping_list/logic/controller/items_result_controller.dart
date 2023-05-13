@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:get/get.dart';
-// import '../../../../core/constants/api.dart';
+import '../../../../core/constants/api.dart';
 import '../service/ikea_proudcts.dart';
 import 'package:http/http.dart' as http;
 import '../../model/proudct_model.dart';
@@ -34,7 +34,7 @@ class ItemsResultController extends GetxController {
     }
   }
 
-  /* sendShoppingListToDallE(String imgDesc) async {
+  sendShoppingListToDallE(String imgDesc) async {
     print('enter Dall-E fnction');
     print(imgDesc);
     try {
@@ -60,5 +60,5 @@ class ItemsResultController extends GetxController {
       print('0-0-0-0 catch error dall-e!!!!!!!!');
       print(e.toString());
     }
-  } */
+  } 
 }

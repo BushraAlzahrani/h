@@ -46,7 +46,7 @@ class ChatController extends GetxController {
     messages[index] = updatedMessage;
   }
 
-/*   void handleSendPressed(types.PartialText message) async {
+  void handleSendPressed(types.PartialText message) async {
     final textMessage = types.TextMessage(
       author: user,
       createdAt: DateTime.now().millisecondsSinceEpoch,
@@ -65,7 +65,8 @@ class ChatController extends GetxController {
 
     chatGPTReply(rep.toString());
   }
- */
+ 
+
   void chatGPTReply(String message) {
     final textMessage = types.TextMessage(
       author: chatGPT,

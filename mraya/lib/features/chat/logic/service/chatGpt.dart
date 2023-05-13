@@ -15,14 +15,15 @@ class ChatGpt {
             ]
           }),
           headers: {
-            'Authorization': chatGptApiKey,
+              'Content-Type': 'application/json',
+            'Authorization': 'Bearer $chatGptApiKey',
            
           });
       if (response.statusCode == 200) {
         var data = json.decode(response.body);
         return data['choices'][0]['message']['content'];
       } else {
-        return 'error';
+        return  response.statusCode.toString();
         // var data = jsonDecode(response.body.toString());
         // print(data);
         // Get.snackbar(

@@ -7,7 +7,7 @@ class ChatGpt {
 
   Future<String> talkToChatGpt(String role, String content) async {
     try {
-      final response = await http.post(Uri.parse('${vectaraBaseURL}'),
+      final response = await http.post(Uri.parse('${chatGptBaseUrl}'),
           body: json.encode({
             "model": "gpt-3.5-turbo",
             "messages": [
@@ -15,8 +15,8 @@ class ChatGpt {
             ]
           }),
           headers: {
-            'customer-id': customerId,
-            'x-api-key': vectaraApiKey,
+            'Authorization': chatGptApiKey,
+           
           });
       if (response.statusCode == 200) {
         var data = json.decode(response.body);
